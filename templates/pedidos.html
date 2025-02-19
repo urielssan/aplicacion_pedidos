@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Lista de Pedidos</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Fecha de Entrega</th>
+            <th>Horario de Entrega</th>
+            <th>Método de Pago</th>
+            <th>Monto</th>
+            <th>Pagado</th>
+            <th>Productos</th>
+            <th>Cantidad</th>
+            <th>Observaciones</th>
+        </tr>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ pedido['Vendedor'] }}</td>
+            <td>{{ pedido['Cliente'] }}</td>
+            <td>{{ pedido['Dirección'] }}</td>
+            <td>{{ pedido['Teléfono'] }}</td>
+            <td>{{ pedido['Fecha de Entrega'] }}</td>
+            <td>{{ pedido['Horario de Entrega'] }}</td>
+            <td>{{ pedido['Método de Pago'] }}</td>
+            <td>{{ pedido['Monto'] }}</td>
+            <td>{{ pedido['Pagado'] }}</td>
+            <td>{{ pedido['Productos'] }}</td>
+            <td>{{ pedido['Cantidad'] }}</td>
+            <td>{{ pedido['Observaciones'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

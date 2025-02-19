@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ingresar Pedido</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<!-- Agregar jQuery y Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<script>
+          const preciosProductos = {
+    "Agua saborizada Naranja 3000": 3000,
+    "Agua saborizada Naranja 1600": 1600,
+    "Agua sin gas 2500": 2500,
+    "Agua sin gas 1600": 1600,
+    "Baguette Tradicional 500": 500,
+    "BBQ Casera BBQ 1500": 1500,
+    "Champagne Brut Nature 10000": 10000,
+    "Cerveza Blond Ale 2400": 2400,
+    "Cerveza Porter 2400": 2400,
+    "Cerveza Scottish 2400": 2400,
+    "Vino Blanco Chardonay Organico 8000": 8000,
+    "Coca Cola Comun 4000": 4000,
+    "Coca Cola Comun 1800": 1800,
+    "Coca Cola Zero 1800": 1800,
+    "Cordero Braseado Desmechado Cordero 7500": 7500,
+    "Criolla Criolla 1500": 1500,
+    "Empanadas Ternera Suave 1900": 1900,
+    "Empanadas Cordero 1900": 1900,
+    "Empanadas Congeladas Cordero 22800": 22800,
+    "Empanadas Congeladas Carne 22800": 22800,
+    "Empanadas Espinaca 1900": 1900,
+    "Empanadas Congeladas Espinaca 22800": 22800,
+    "Empanadas Jamon y Queso 1900": 1900,
+    "Empanadas Congeladas Jamon y Queso 22800": 22800,
+    "Empanadas Congeladas Mozarella y Cebolla 22800": 22800,
+    "Empanadas Mozarella y Cebolla 1900": 1900,
+    "Empanadas Congeladas Pollo 22800": 22800,
+    "Empanadas Pollo 1900": 1900,
+    "Hamburguesa Novillo 7200": 7200,
+    "Hamburguesa Congeladas crudas Cordero 7500": 7500,
+    "Hamburguesa Congeladas crudas Novillo 7500": 7500,
+    "Helado Chocolate con almendras 5800": 5800,
+    "Helado Dulce de Leche 5800": 5800,
+    "Helado Lemon Pie 5800": 5800,
+    "Helado Mascarpone 5800": 5800,
+    "Huevos de Campo 2200": 2200,
+    "Huevos de Campo 4400": 4400,
+    "Huevos de Campo 8700": 8700,
+    "Vino Malbec Organico 8000": 8000,
+    "Mayo de Morron Morron 1500": 1500,
+    "Mignon 300": 300,
+    "Novillo Braseado Desmechado Novillo 8000": 8000,
+    "Pollo Braseado Desmechado Pollo 8000": 8000,
+    "Queso con Cinoulette Ciboulette 1500": 1500,
+    "Vino Rosado Organico 8000": 8000,
+    "Sanwich de Milanesa Milanesa de carne 7200": 7200,
+    "Sidra Red Delicious 2400": 2400
+  };
+    
+  function actualizarSubtotal() {
+        let total = 0;
+        let productos = document.querySelectorAll(".producto-item");
+
+        productos.forEach(div => {
+            let producto = div.querySelector("select").value;
+            let cantidad = div.querySelector("input").value;
+            let precioUnitario = preciosProductos[producto] || 0;
+            total += (precioUnitario * cantidad);
+        });
+
+        // Aplicar descuentos según el método de pago
+        let metodoPago = document.getElementById("metodo_pago").value;
+        let descuento = 0;
+
+        if (metodoPago === "Efectivo") {
+            descuento = 0.10; // 10% de descuento
+        } else if (metodoPago === "Transferencia") {
+            descuento = 0.05; // 5% de descuento
+        }
+
+        let totalConDescuento = total - (total * descuento);
+
+        // Actualizar la pantalla
+        document.getElementById("subtotal").innerText = `Subtotal: $${total.toFixed(2)}`;
+        document.getElementById("descuento").innerText = `Descuento: -$${(total * descuento).toFixed(2)}`;
+        document.getElementById("monto").value = totalConDescuento.toFixed(2);
+    }
+
+    $(document).ready(function() {
+        // Aplicar Select2 a todos los selects de productos cuando se carga la página
+        $('.producto-select').select2();
+    });
+
+    function agregarProducto() {
+        let container = document.getElementById("productos-container");
+        let div = document.createElement("div");
+        div.classList.add("producto-item");
+        let idProducto = "producto-" + Math.random().toString(36).substr(2, 9); // Genera un ID único
+
+        div.innerHTML = `
+            <select name="productos[]" class="producto-select" id="${idProducto}" onchange="actualizarSubtotal()">
+                <option value="">Seleccionar producto</option>
+                ${Object.keys(preciosProductos).map(p => `<option value="${p}">${p} - $${preciosProductos[p]}</option>`).join("")}
+            </select>
+            Cantidad: <input type="number" name="cantidades[]" min="1" value="1" required oninput="actualizarSubtotal()">
+            <button type="button" onclick="this.parentNode.remove(); actualizarSubtotal()">X</button>
+            <br>`;
+        container.appendChild(div);
+
+        // Aplicar Select2 al nuevo producto agregado
+        $(`#${idProducto}`).select2();
+    }
+</script>
+    
+</head>
+<body>
+    
+    <form class="form" action="/enviar_pedido" method="post">
+        <h2>Ingresar Pedido</h2>
+        <div class="productos">
+            <p>Vendedor:</p>
+            <select name="vendedor" required>
+                <option value="Veronica">Veronica</option>
+                <option value="Silvina">Silvina</option>
+                <option value="Lautaro">Lautaro</option>
+            </select>
+            <p>Cliente:</p>
+            <input type="text" name="cliente" required>
+            <p>Dirección del cliente o Local de retiro:</p>
+            <input type="text" name="direccion" required>
+            <p>Teléfono:</p>
+            <input type="text" name="telefono" required>
+            <p>Fecha de Entrega:</p>
+            <input type="date" name="fecha_entrega" required>
+            <p>Horario de Entrega:</p><select name="horario_entrega">
+                <option value="08:00 a 09:00">08:00 a 09:00</option>
+                <option value="09:00 a 10:00">09:00 a 10:00</option>
+                <option value="10:00 a 11:00">10:00 a 11:00</option>
+                <option value="11:00 a 12:00">11:00 a 12:00</option>
+                <option value="12:00 a 13:00">12:00 a 13:00</option>
+                <option value="13:00 a 14:00">13:00 a 14:00</option>
+                <option value="14:00 a 15:00">14:00 a 15:00</option>
+                <option value="15:00 a 16:00">15:00 a 16:00</option>
+                <option value="16:00 a 17:00">16:00 a 17:00</option>
+                <option value="17:00 a 18:00">17:00 a 18:00</option>
+            </select>
+            <p>Método de Pago:</p>
+            <select name="metodo_pago" id="metodo_pago" required onchange="actualizarSubtotal()">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Débito">Débito</option>
+                <option value="Crédito">Crédito</option>
+            </select>
+            <h3 id="subtotal">Subtotal: $0.00</h3>
+            <h3 id="descuento">Descuento: $0.00</h3>
+            <p>Monto:</p>
+            <input type="number" name="monto" id="monto" required readonly>
+            <p>¿Pagado?</p>
+            <select name="pagado"><option value="Sí">Sí</option><option value="No">No</option></select>
+        </div>
+        <div class="submit">
+            <h2>Productos</h2>
+            <div id="productos-container"></div> <!-- Contenedor donde se agregan los productos dinámicamente -->
+            <button type="button" onclick="agregarProducto()"> + Agregar Producto</button>
+            <p>Observaciones:</p>
+            <input type="text" name="observaciones">
+            <h3 id="subtotal">Subtotal: $0.00</h3>
+
+            <input type="submit" value="Enviar Pedido">
+        </div>
+        
+        
+    </form>
+</body>
+</html>
