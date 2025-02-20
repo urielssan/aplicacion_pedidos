@@ -12,55 +12,56 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
-          const preciosProductos = {
-    "Agua saborizada Naranja 3000": 3000,
-    "Agua saborizada Naranja 1600": 1600,
-    "Agua sin gas 2500": 2500,
-    "Agua sin gas 1600": 1600,
-    "Baguette Tradicional 500": 500,
-    "BBQ Casera BBQ 1500": 1500,
-    "Champagne Brut Nature 10000": 10000,
-    "Cerveza Blond Ale 2400": 2400,
-    "Cerveza Porter 2400": 2400,
-    "Cerveza Scottish 2400": 2400,
-    "Vino Blanco Chardonay Organico 8000": 8000,
-    "Coca Cola Comun 4000": 4000,
-    "Coca Cola Comun 1800": 1800,
-    "Coca Cola Zero 1800": 1800,
-    "Cordero Braseado Desmechado Cordero 7500": 7500,
-    "Criolla Criolla 1500": 1500,
-    "Empanadas Ternera Suave 1900": 1900,
-    "Empanadas Cordero 1900": 1900,
-    "Empanadas Congeladas Cordero 22800": 22800,
-    "Empanadas Congeladas Carne 22800": 22800,
-    "Empanadas Espinaca 1900": 1900,
-    "Empanadas Congeladas Espinaca 22800": 22800,
-    "Empanadas Jamon y Queso 1900": 1900,
-    "Empanadas Congeladas Jamon y Queso 22800": 22800,
-    "Empanadas Congeladas Mozarella y Cebolla 22800": 22800,
-    "Empanadas Mozarella y Cebolla 1900": 1900,
-    "Empanadas Congeladas Pollo 22800": 22800,
-    "Empanadas Pollo 1900": 1900,
-    "Hamburguesa Novillo 7200": 7200,
-    "Hamburguesa Congeladas crudas Cordero 7500": 7500,
-    "Hamburguesa Congeladas crudas Novillo 7500": 7500,
-    "Helado Chocolate con almendras 5800": 5800,
-    "Helado Dulce de Leche 5800": 5800,
-    "Helado Lemon Pie 5800": 5800,
-    "Helado Mascarpone 5800": 5800,
-    "Huevos de Campo 2200": 2200,
-    "Huevos de Campo 4400": 4400,
-    "Huevos de Campo 8700": 8700,
-    "Vino Malbec Organico 8000": 8000,
-    "Mayo de Morron Morron 1500": 1500,
-    "Mignon 300": 300,
-    "Novillo Braseado Desmechado Novillo 8000": 8000,
-    "Pollo Braseado Desmechado Pollo 8000": 8000,
-    "Queso con Cinoulette Ciboulette 1500": 1500,
-    "Vino Rosado Organico 8000": 8000,
-    "Sanwich de Milanesa Milanesa de carne 7200": 7200,
-    "Sidra Red Delicious 2400": 2400
-  };
+ const preciosProductos = {
+    "Agua saborizada Naranja 3000ml": 3000,
+    "Agua saborizada Naranja 1600ml": 1600,
+    "Agua sin gas 2500ml": 2500,
+    "Agua sin gas 1600ml": 1600,
+    "Baguette Tradicional": 500,
+    "BBQ Casera BBQ": 1500,
+    "Champagne Brut Nature": 10000,
+    "Cerveza Blond Ale": 2400,
+    "Cerveza Porter": 2400,
+    "Cerveza Scottish": 2400,
+    "Vino Blanco Chardonay Orgánico": 8000,
+    "Coca Cola Común 2L": 4000,
+    "Coca Cola Común 500ml": 1800,
+    "Coca Cola Zero 500ml": 1800,
+    "Cordero Braseado Desmechado": 7500,
+    "Criolla Casera": 1500,
+    "Empanadas Ternera Suave": 1900,
+    "Empanadas Cordero": 1900,
+    "Empanadas Congeladas Cordero (12u)": 22800,
+    "Empanadas Congeladas Carne (12u)": 22800,
+    "Empanadas Espinaca": 1900,
+    "Empanadas Congeladas Espinaca (12u)": 22800,
+    "Empanadas Jamón y Queso": 1900,
+    "Empanadas Congeladas Jamón y Queso (12u)": 22800,
+    "Empanadas Congeladas Mozarella y Cebolla (12u)": 22800,
+    "Empanadas Mozarella y Cebolla": 1900,
+    "Empanadas Congeladas Pollo (12u)": 22800,
+    "Empanadas Pollo": 1900,
+    "Hamburguesa Novillo (2x)": 7200,
+    "Hamburguesa Congeladas Crudas Cordero (2x)": 7500,
+    "Hamburguesa Congeladas Crudas Novillo (2x)": 7500,
+    "Helado Chocolate con Almendras": 5800,
+    "Helado Dulce de Leche": 5800,
+    "Helado Lemon Pie": 5800,
+    "Helado Mascarpone": 5800,
+    "Huevos de Campo (12u)": 2200,
+    "Huevos de Campo (30u)": 4400,
+    "Huevos de Campo (60u)": 8700,
+    "Vino Malbec Orgánico": 8000,
+    "Mayo de Morrón Casera": 1500,
+    "Mignon Casero": 300,
+    "Novillo Braseado Desmechado": 8000,
+    "Pollo Braseado Desmechado": 8000,
+    "Queso con Ciboulette": 1500,
+    "Vino Rosado Orgánico": 8000,
+    "Sándwich de Milanesa": 7200,
+    "Sidra Red Delicious": 2400
+};
+
     
   function actualizarSubtotal() {
         let total = 0;
@@ -138,16 +139,9 @@
             <p>Fecha de Entrega:</p>
             <input type="date" name="fecha_entrega" required>
             <p>Horario de Entrega:</p><select name="horario_entrega">
-                <option value="08:00 a 09:00">08:00 a 09:00</option>
-                <option value="09:00 a 10:00">09:00 a 10:00</option>
-                <option value="10:00 a 11:00">10:00 a 11:00</option>
-                <option value="11:00 a 12:00">11:00 a 12:00</option>
-                <option value="12:00 a 13:00">12:00 a 13:00</option>
-                <option value="13:00 a 14:00">13:00 a 14:00</option>
-                <option value="14:00 a 15:00">14:00 a 15:00</option>
-                <option value="15:00 a 16:00">15:00 a 16:00</option>
-                <option value="16:00 a 17:00">16:00 a 17:00</option>
-                <option value="17:00 a 18:00">17:00 a 18:00</option>
+                <option value="10:00 a 13:00">10 a 13 hrs / LUNES a SÁBADOS</option>
+                <option value="13:00 a 16:00">13 a 16 hrs / LUNES a SÁBADOS</option>
+                <option value="16:00 a 19:00">16 a 19 hrs / LUNES a VIERNES</option>
             </select>
             <p>Método de Pago:</p>
             <select name="metodo_pago" id="metodo_pago" required onchange="actualizarSubtotal()">
@@ -169,7 +163,6 @@
             <button type="button" onclick="agregarProducto()"> + Agregar Producto</button>
             <p>Observaciones:</p>
             <input type="text" name="observaciones">
-            <h3 id="subtotal">Subtotal: $0.00</h3>
 
             <input type="submit" value="Enviar Pedido">
         </div>
