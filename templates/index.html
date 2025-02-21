@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ingresar Pedido</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Ingresar Pedido</title>
+<!-- Styles and fonts -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <!-- Agregar jQuery y Select2 -->
@@ -120,8 +121,7 @@ const preciosProductos = {
                 ${Object.keys(preciosProductos).map(p => `<option value="${p}">${p} - $${preciosProductos[p]}</option>`).join("")}
             </select>
             Cantidad: <input type="number" name="cantidades[]" min="1" value="1" required oninput="actualizarSubtotal()">
-            <button type="button" onclick="this.parentNode.remove(); actualizarSubtotal()">X</button>
-            <br>`;
+            <button type="button" onclick="this.parentNode.remove(); actualizarSubtotal()">X</button>`;
         container.appendChild(div);
 
         // Aplicar Select2 al nuevo producto agregado
