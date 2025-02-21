@@ -1,0 +1,119 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Exo 2", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: #881d1d;
+  color: #030303; }
+  body form {
+    width: 80%;
+    padding: 20px;
+    margin: 2rem auto 2rem auto;
+    background: #fcfcfc;
+    border: 1px solid #444343;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #444343; }
+  body input {
+    padding: 0.5rem;
+    border: 1px solid #444343;
+    border-radius: 5px; }
+    body input:hover {
+      border: 1px solid #881d1d; }
+    body input:focus {
+      border-color: #881d1d;
+      outline: none; }
+    body input[type=submit] {
+      width: 30%;
+      padding: 1rem;
+      background: #444343;
+      color: #fcfcfc;
+      cursor: pointer; }
+      body input[type=submit]:hover {
+        background-color: #881d1d; }
+    body input button {
+      border-radius: 5px; }
+  body select {
+    border: 1px solid #881d1d;
+    background-color: #fcfcfc;
+    padding: .25rem; }
+  body p {
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    padding: 0; }
+  body h2 {
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal; }
+  body hr {
+    margin: 0;
+    padding: 0;
+    width: 100%; }
+
+.productos {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 14px;
+  margin: auto;
+  padding-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #881d1d; }
+
+.submit {
+  display: grid;
+  width: 80%;
+  gap: 1rem;
+  justify-content: center;
+  align-content: center;
+  margin: auto; }
+  .submit input {
+    width: 100%;
+    margin: auto; }
+    .submit input[type=submit] {
+      width: 8rem;
+      background-color: #881d1d;
+      color: #fcfcfc;
+      cursor: pointer; }
+      .submit input[type=submit]:hover {
+        background-color: #fcfcfc;
+        border: 1px solid #881d1d;
+        transition: all 0.3s; }
+    .submit input[type=text] {
+      width: 90%; }
+  .submit button {
+    background-color: #fcfcfc;
+    padding: 0.75rem;
+    border: 1px solid #444343; }
+    .submit button:hover {
+      background-color: #fcfcfc;
+      border: 1px solid #881d1d; }
+
+.producto-item {
+  display: flex;
+  gap: 1rem;
+  margin: auto;
+  justify-items: center;
+  align-items: center; }
+  .producto-item input {
+    width: 3rem; }
+  .producto-item button {
+    width: 2rem;
+    height: 2rem; }
+
+.product-quantity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: auto;
+  justify-items: baseline; }
+  .product-quantity input {
+    width: 100%;
+    text-align: center; }
+  .product-quantity button {
+    background-color: #881d1d;
+    color: #fcfcfc; }
+    .product-quantity button:hover {
+      background-color: #881d1d; }

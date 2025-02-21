@@ -8,11 +8,27 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.lib.enums import TA_CENTER
+import sass
 
 app = Flask(__name__)
 
 FILE_PATH = "pedidos.xlsx"
-LOGO_PATH = os.path.join(os.getcwd(), "static", "logo.png")  # Ruta absoluta del logo
+LOGO_PATH = os.path.join(os.getcwd(), "static", "images", "logo.png")  # Ruta absoluta del logo
+
+# compilar scss
+def compile_scss():
+    scss_file = os.path.join("static", "css", "styles.scss")
+    css_file = os.path.join("static", "css", "styles.css")
+    
+    with open(scss_file, "r") as scss:
+        scss_content = scss.read()
+
+    css_content = sass.compile(string=scss_content)
+    
+    with open(css_file, "w") as css:
+        css.write(css_content)
+
+compile_scss()
 
 def init_excel():
     if not os.path.exists(FILE_PATH):
