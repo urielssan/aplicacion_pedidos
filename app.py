@@ -116,7 +116,7 @@ def enviar_pedido():
     # Cálculo de descuento
     descuento = 0
     if metodo_pago in ["Efectivo", "Transferencia"]:
-        descuento = 0.10 * monto if metodo_pago == "Efectivo" else 0.05 * monto
+        descuento = 0.05 * monto if metodo_pago == "Efectivo" else 0.05 * monto
     total_final = monto - descuento
 
     # Guardar en Excel
@@ -144,7 +144,7 @@ def enviar_pedido():
 def generar_pdf(pedido_id, cliente, fecha_entrega, horario_entrega, metodo_pago, monto, descuento, total_final, pagado, productos, cantidades, precios, direccion, telefono, observaciones):
     pdf_path = f"orden_pedido_{pedido_id}.pdf"
 
-    doc = SimpleDocTemplate(pdf_path, pagesize=(120 * mm, 250 * mm), leftMargin=5 * mm, rightMargin=5 * mm, topMargin=10 * mm, bottomMargin=5 * mm)
+    doc = SimpleDocTemplate(pdf_path, pagesize=(150 * mm, 250 * mm), leftMargin=5 * mm, rightMargin=5 * mm, topMargin=10 * mm, bottomMargin=5 * mm)
     elements = []
     styles = getSampleStyleSheet()
     styles["Normal"].fontSize = 10
