@@ -125,7 +125,7 @@ def enviar_pedido():
         "Triples Vegetarianos (1u)": 1000,
         "Vegetales Salteados (1u)": 5000,
         "Tira de Asado (1kg)": 8000,
-        "Milanesas de Ternera": 10000
+        "Milanesas de Novillo (1kg)": 10000
 }
 
     # 🔹 **Nuevo: Obtener los precios correctos**
