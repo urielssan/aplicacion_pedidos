@@ -123,7 +123,9 @@ def enviar_pedido():
         "Triples Jamón Crudo y Queso (1u)": 1000,
         "Triples Peceto (1u)": 1000,
         "Triples Vegetarianos (1u)": 1000,
-        "Vegetales Salteados (1u)": 5000
+        "Vegetales Salteados (1u)": 5000,
+        "Tira de Asado (1kg)": 8000,
+        "Milanesas de Ternera": 10000
 }
 
     # 🔹 **Nuevo: Obtener los precios correctos**
