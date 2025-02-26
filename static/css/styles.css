@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0 auto;
   text-align: center;
@@ -117,3 +118,31 @@ body {
     color: #fcfcfc; }
     .product-quantity button:hover {
       background-color: #881d1d; }
+
+/* 🔹 Navbar Estilos */
+.navbar {
+  background-color: #333;
+  /* Color de fondo */
+  padding: 10px 0;
+  text-align: center; }
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.navbar ul li {
+  display: inline;
+  margin-right: 20px; }
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: background 0.3s; }
+
+.navbar ul li a:hover {
+  background-color: #575757;
+  border-radius: 5px; }
