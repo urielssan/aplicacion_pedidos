@@ -49,9 +49,10 @@ def login_requerido(f):
     @wraps(f)
     def decorador(*args, **kwargs):
         if "usuario" not in session:
-            return redirect(url_for("login"))  # 🔹 Redirigir a login si no está autenticado
+            return redirect(url_for("login", next=request.url))  # 🔹 Guardar la URL a la que intentaban acceder
         return f(*args, **kwargs)
     return decorador
+
 
 
 @app.route('/logout')
@@ -73,7 +74,13 @@ def index():
 @app.route('/ver_pedidos')
 @login_requerido
 def ver_pedidos():
-    df = pd.read_excel(FILE_PATH, engine="openpyxl")
+    try:
+        df_pedidos = pd.read_excel(FILE_PATH, sheet_name="Pedidos", engine="openpyxl")
+    except ValueError:
+        df_pedidos = pd.DataFrame(columns=["ID", "Vendedor", "Cliente", "Dirección", "Teléfono", "Fecha de Pedido",
+                                        "Fecha de Entrega", "Horario de Entrega", "Método de Pago", "Monto", "Pagado",
+                                        "Observaciones", "Estado", "Productos", "Cantidades"])
+
     pedidos = df.to_dict(orient="records")  # Convertimos a lista de diccionarios
     return render_template("ver_pedidos.html", pedidos=pedidos)
 
@@ -93,6 +100,7 @@ def enviar_pedido():
     cliente = request.form["cliente"]
     direccion = request.form["direccion"]
     telefono = request.form["telefono"]
+    fecha_pedido = request.form["fecha_pedido"]
     fecha_entrega = request.form["fecha_entrega"]
     horario_entrega = request.form["horario_entrega"]
     metodo_pago = request.form["metodo_pago"]
@@ -152,6 +160,7 @@ def enviar_pedido():
         "Observaciones": observaciones,
         "Estado": estado
     }
+    
     guardar_en_sheets(datos_pedido, productos, cantidades)
 
     return generar_pdf(pedido_id, cliente, fecha_entrega, horario_entrega, metodo_pago, monto, 0, monto, pagado, productos, cantidades, precios, direccion, telefono, observaciones)

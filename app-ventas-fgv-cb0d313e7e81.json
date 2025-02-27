@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "app-ventas-fgv",
+  "private_key_id": "cb0d313e7e81b7f6c47f9cdcf4b3c1ac135f15e3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDNRHn3aMpGBo5K\nLniXdlrqdFcrJwDHwKfcQdbpAAiXCoJ24DGWoaDEhnMBCVzSgo1OJHohGQra8rTe\nRwsW9sEHZ86Sw+JYp3tp3ugTgARIMba0Drn540uTrkDgg4bKh1j5ACRUvp1c9eYs\nH4Gmx/iWlbJ8QUnVqbrH+jBOq1Z40xdOm0dje4znEx/n2XLnLe4voovQzPL4c2mq\nrnSLMbVCwEQNDn+nDY5j8/cGEzrPQNJ0Ud9C5nn/R3uqagjhbVtstDJRjQZpZhWY\nZQNbpHEkHvUMeqLKZiJTjWhS8qwOO9PZw8+wGE8iESNtjtO0N8Ne2rC18Ys0FTFU\nX09yh+BJAgMBAAECggEAEcxOsQOeikzWOJtn7GYgQvT8e+rhV/Cd/WyeCEzu8b3B\nCzKsSg3QpUmtHhlkOYKFYxGpn0YPGWXzBdTuIrsZiJ1ZHYOrlBlNi6P+xnYSqPna\niClAueiZ7H+u82ikHtp2ffyjqc9vUJinsQq4ULBFHzVyqPB2SPbzEZThbGjR0h7/\nrluq3voootbAkrW7TBKlNqK4/FfJY8HK60RhPO9nJu9/v2cCbi0QN1dy5xeoNwse\naCka39T1ShENsBSkWrWD5Ss9JDKOv7ul5F3AdQ/HQjbDi7pL7dIX4oIRM3I7NfS7\nfrsUNxwBwwhfJsU4rv47HRhHjAARm/MCwL6x/038qwKBgQD1FA4ws4SELzlG9m7r\nn1B7SmNSqSE941M30vjsy72stl8hwUhh3C5/CP07ipwz66/N73vt69htuoiULAJw\nF7BCIq1/EwDXL6UrS4BTBJLeZqHDFTVzRRu4EEePdMUkN77dYUXHECuforw7D8TO\nP7dvY68cMh/Rht2VdE3LCLi2KwKBgQDWaj53C0f8IGsd9lXfV0Zhmx59ENcgKnLx\n2HYk0zlfo3BDQUP5BdfEQqEI/W7naXyibmChIVyzZ7ZJw/40Ml/iaMRk7T6tZjNc\nUqF7NhqAVl4CKufEIyWfPNr0h0F7IAkplQ0SXqLgPYd9v2tlBS9jzT730PxWlkf0\nAVczGNTdWwKBgH6xInDMrImEvBBSHp8RmZJSryuxIO0UUhW+q04GOQRKtr0FZPyp\nzSOAqyAXlI5GnXhQ//jLffOjhS1L3urBZC2cLaJOWZXkHHdYLXs9Fwt/dMobcako\nJZ8uUz/2tl71rmZU/bRdSJ/aiYHisfOI/rPHjWN/CfHPzUaQfBKkbJBHAoGAe/DA\nGNoZi0FGCfTJ4Kc3VNZwwkSIxdwjw26npFPAt2rnSskgPINHHPiS03qDsBrG47HA\nA4QgbMgHlA5KE+wGhv6ef+SvtVX9XGGbXHiCyyqhfslEXZkfdzObMXw5uq1i/nld\nLAAuUEbg2ixbLPLZWOxceK2CH58RCpf3yt6QtT8CgYBBJi0xTzIHTmW8lvXrZcy+\nyG66gQs05BHL90CL2PYfidp3QiXJ/sHW1otlynycGBQoDZnHx9cPfPCR0TZma06M\nGvhpD5iiwF+3WQne3LOST9j7ygWV1DKvrznMcBcQQOlvZrmK8Zn0KP9dhXfXVPk2\nsLnLNJ2pZJVE+QooFRoXvA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "sector-de-it@app-ventas-fgv.iam.gserviceaccount.com",
+  "client_id": "114868966499126512912",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sector-de-it%40app-ventas-fgv.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
