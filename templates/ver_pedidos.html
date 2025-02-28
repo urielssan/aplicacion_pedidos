@@ -14,7 +14,7 @@
     </nav>
 
     <h2>Lista de Pedidos</h2>
-    <table border="1">
+    <table class="pedidos_table" border="1">
         <tr>
             <th>ID</th>
             <th>Vendedor</th>
@@ -41,7 +41,6 @@
         {% endfor %}
     </table>
 
-    <br>
     <a href="{{ url_for('index') }}">⬅ Volver al inicio</a>
 </body>
 </html>

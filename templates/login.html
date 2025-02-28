@@ -5,21 +5,21 @@
     <link rel="stylesheet" href=/static/css/styles.css>
 </head>
 <body>
-    <h2 style="color: white;">Iniciar Sesión</h2>
-    
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-<div class="login">
-    <form method="POST">
-        <label>Usuario:</label>
-        <input type="text" name="usuario" required><br><br>
+    <div class="login">
+        <h2>INICIAR SESIÓN</h2>
+        
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <label>Usuario:</label>
+            <input type="text" name="usuario" required>
 
-        <label>Contraseña:</label>
-        <input type="password" name="contraseña" required><br><br>
+            <label>Contraseña:</label>
+            <input type="password" name="contraseña" required>
 
-        <button type="submit">Ingresar</button>
-    </form>
-</div>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
 </body>
 </html>

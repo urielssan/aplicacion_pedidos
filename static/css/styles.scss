@@ -19,6 +19,10 @@ body {
     background-color: $bg-color;
     color: $font-color;
 
+    a {
+        color: $light-color;
+    }
+
     form {
         width: 80%;
         
@@ -59,6 +63,7 @@ body {
         
         button {
             border-radius: 5px;
+            cursor: pointer;
         }
     }
     
@@ -80,6 +85,7 @@ body {
         font-optical-sizing: auto;
         font-weight: 600;
         font-style: normal;
+        color: $light-color;
     }
 
     hr {
@@ -87,7 +93,10 @@ body {
         padding: 0;
         width: 100%;
     }
-    
+}
+
+.header {
+    color: $light-color;
 }
 
 .productos {
@@ -185,34 +194,94 @@ body {
     }
 }
 
-/* 🔹 Navbar Estilos */
 .navbar {
-    background-color: #333; /* Color de fondo */
+    background-color: $dark-color;
     padding: 10px 0;
     text-align: center;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+         li {
+            display: inline;
+            margin-right: 20px;
+            
+            a {
+                color: $light-color;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 10px 15px;
+                transition: background 0.3s;
+                
+                &:hover {
+                    background-color: $dark-color;
+                    border-radius: 5px;
+                }
+            }
+            
+        }
+    }
 }
 
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 15px;
-    transition: background 0.3s;
-}
-
-.navbar ul li a:hover {
-    background-color: #575757;
+.login {
+    width: fit-content;
+    display: grid;
+    margin: 10rem auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: $light-color;
+    color: $font-color;
     border-radius: 5px;
+
+    h2 {
+        margin: auto;
+        color: $bg-color;
+    }
+
+    form {
+        display: grid;
+
+        margin:auto;
+        padding: 0;
+
+        justify-items: start;
+        justify-content: center;
+
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+
+        button {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 5px;
+            background-color: $bg-color;
+            margin-top: 1rem;
+            color: $light-color;
+            border: $border $bg-color;
+            transition: all 0.4s;
+
+            &:hover {
+                background-color: $light-color;
+                color: $bg-color;
+                border: $border $bg-color;
+                transition: all 0.3s;
+            }
+        }
+
+        input {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+        }
+    }
+}
+
+.pedidos_table {
+    display: flex;
+    justify-content: center;
+    color: $light-color;
+    padding: 1rem;
 }
