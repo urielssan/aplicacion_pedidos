@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- 🔹 Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">🏠 Inicio</a></li>
+            <li><a href="{{ url_for('logout') }}">🚪 Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <h2>Lista de Pedidos</h2>
+    <table class="pedidos_table" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Fecha Entrega</th>
+            <th>Monto</th>
+            <th>Pagado</th>
+            <th>Estado</th>
+        </tr>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ pedido["ID"] }}</td>
+            <td>{{ pedido["Vendedor"] }}</td>
+            <td>{{ pedido["Cliente"] }}</td>
+            <td>{{ pedido["Dirección"] }}</td>
+            <td>{{ pedido["Teléfono"] }}</td>
+            <td>{{ pedido["Fecha de Entrega"] }}</td>
+            <td>${{ pedido["Monto"] }}</td>
+            <td>{{ pedido["Pagado"] }}</td>
+            <td>{{ pedido["Estado"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('index') }}">⬅ Volver al inicio</a>
+</body>
+</html>

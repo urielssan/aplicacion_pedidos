@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href=/static/css/styles.css>
+</head>
+<body>
+    <div class="login">
+        <h2>INICIAR SESIÓN</h2>
+        
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <label>Usuario:</label>
+            <input type="text" name="usuario" required>
+
+            <label>Contraseña:</label>
+            <input type="password" name="contraseña" required>
+
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html>
