@@ -13,8 +13,12 @@ app = Flask(__name__)
 app.secret_key = "clave_secreta"
 
 #Datos de autenticación
-USUARIO_ADMIN = "admin"
-CONTRASEÑA_ADMIN = "admin123"
+USUARIOS = {
+    "Lucia": "Fgv19886",
+    "Silvina": "Fgv19886",
+    "Veronica": "Fgv19886",
+    "Lautaro": "Fgv19886",
+}
 
 
 # Configuraciones
@@ -25,46 +29,34 @@ compile_scss()
 init_excel()
 
 
+
+# 🔹 **Decorador para proteger rutas**
+def login_requerido(f):
+    @wraps(f)
+    def decorador(*args, **kwargs):
+        if "usuario" not in session:
+            return redirect(url_for("login"))  # 🔹 Si no está autenticado, redirige al login
+        return f(*args, **kwargs)
+    return decorador
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         usuario = request.form["usuario"]
         contraseña = request.form["contraseña"]
 
-        if usuario == USUARIO_ADMIN and contraseña == CONTRASEÑA_ADMIN:
+        if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
             session["usuario"] = usuario
-            next_page = request.args.get("next")  # 🔹 Ver si había una página previa
-            return redirect(next_page or url_for("index"))  # 🔹 Ir a la página previa o index
+            return redirect(url_for("index"))
 
-        else:
-            return render_template("login.html", error="Usuario o contraseña incorrectos")
+        return render_template("login.html", error="Usuario o contraseña incorrectos")
 
     return render_template("login.html")
-
-
-
-# 🔹 Decorador para proteger rutas
-
-def login_requerido(f):
-    @wraps(f)
-    def decorador(*args, **kwargs):
-        if "usuario" not in session:
-            return redirect(url_for("login", next=request.url))  # 🔹 Guardar la URL a la que intentaban acceder
-        return f(*args, **kwargs)
-    return decorador
-
-
 
 @app.route('/logout')
 def logout():
     session.pop("usuario", None)
     return redirect(url_for("login"))
-
-@app.errorhandler(500)
-def error_servidor(e):
-    return redirect(url_for("login"))
-
-
 
 @app.route('/')
 @login_requerido
