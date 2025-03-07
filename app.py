@@ -12,6 +12,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "clave_secreta"
 
+
 #Datos de autenticación
 USUARIO_ADMIN = "admin"
 CONTRASEÑA_ADMIN = "admin123"
