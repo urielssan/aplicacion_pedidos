@@ -106,17 +106,15 @@ const preciosProductos = {
         let metodoPago = document.getElementById("metodo_pago").value;
         let descuento = 0;
 
-        if (metodoPago === "Efectivo") {
+        if (descuentoOn === "si") {
             descuento = 0.05; // 5% de descuento
-        } else if (metodoPago === "Transferencia") {
-            descuento = 0.05; // 5% de descuento
-        }
+        } 
 
         let totalConDescuento = total - (total * descuento);
 
         // Actualizar la pantalla
         document.getElementById("subtotal").innerText = `Subtotal: $${total.toFixed(2)}`;
-        document.getElementById("descuento").innerText = `Descuento: -$${(total * descuento).toFixed(2)}`;
+        document.getElementById("descuento").innerText = `Descuento: -$${(descuento).toFixed(2)}`;
         document.getElementById("monto").value = totalConDescuento.toFixed(2);
     }
 
@@ -167,6 +165,8 @@ const preciosProductos = {
                 <option value="Veronica">Veronica</option>
                 <option value="Silvina">Silvina</option>
                 <option value="Lautaro">Lautaro</option>
+                <option value="Laura">Laura</option>
+                <option value="Lucia">Lucia</option>
             </select>
             <p>Cliente:</p>
             <input type="text" name="cliente" required>
@@ -187,7 +187,12 @@ const preciosProductos = {
                 <option value="Transferencia">Transferencia</option>
                 <option value="Débito">Débito</option>
                 <option value="Crédito">Crédito</option>
+                <option value="Mercado-Pago">Mercado Pago</option>
+                <option value="Payway">Payway</option>
+                <option value="QR">QR<option>
             </select>
+            <p>¿Con Descuento?</p>
+            <select name="descuentoOn" id="descuentoOn"><option value="Sí">Sí</option><option value="No">No</option></select>
             <h3 id="subtotal">Subtotal: $0.00</h3>
             <h3 id="descuento">Descuento: $0.00</h3>
             <p>Monto:</p>
