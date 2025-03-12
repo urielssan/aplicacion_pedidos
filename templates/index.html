@@ -103,10 +103,10 @@ const preciosProductos = {
         });
 
         // Aplicar descuentos según el método de pago
-        let metodoPago = document.getElementById("metodo_pago").value;
+        let descuentoOn = document.getElementById("descuentoOn").value;
         let descuento = 0;
 
-        if (descuentoOn === "si") {
+        if (descuentoOn === "Sí") {
             descuento = 0.05; // 5% de descuento
         } 
 
@@ -114,7 +114,7 @@ const preciosProductos = {
 
         // Actualizar la pantalla
         document.getElementById("subtotal").innerText = `Subtotal: $${total.toFixed(2)}`;
-        document.getElementById("descuento").innerText = `Descuento: -$${(descuento).toFixed(2)}`;
+        document.getElementById("descuento").innerText = `Descuento: -$${(descuento*total).toFixed(2)}`;
         document.getElementById("monto").value = totalConDescuento.toFixed(2);
     }
 
@@ -189,10 +189,10 @@ const preciosProductos = {
                 <option value="Crédito">Crédito</option>
                 <option value="Mercado-Pago">Mercado Pago</option>
                 <option value="Payway">Payway</option>
-                <option value="QR">QR<option>
+                <option value="QR">QR</option>
             </select>
             <p>¿Con Descuento?</p>
-            <select name="descuentoOn" id="descuentoOn"><option value="Sí">Sí</option><option value="No">No</option></select>
+            <select name="descuentoOn" id="descuentoOn" required onchange="actualizarSubtotal()"><option value="Sí">Sí</option><option value="No">No</option></select>
             <h3 id="subtotal">Subtotal: $0.00</h3>
             <h3 id="descuento">Descuento: $0.00</h3>
             <p>Monto:</p>

@@ -31,9 +31,10 @@ def generar_pdf(pedido_id, cliente, fecha_entrega, horario_entrega, metodo_pago,
     elements.append(Paragraph("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -", styles["Normal"]))
 
     # Sección 3: Tabla de Productos Minimalista
+    total_precio = 0
     table_data = [["Producto", "Cant.", "P. Unit", "Total"]]
     for producto, cantidad, precio in zip(productos, cantidades, precios):
-        total_precio = precio * int(cantidad)
+        total_precio = total_precio + precio * int(cantidad)
         table_data.append([producto, f"{cantidad}x", f"${precio:,.2f}", f"${total_precio:,.2f}"])
 
     table = Table(table_data, colWidths=[40 * mm, 25 * mm, 25 * mm, 25 * mm], hAlign='CENTER')
@@ -54,7 +55,7 @@ def generar_pdf(pedido_id, cliente, fecha_entrega, horario_entrega, metodo_pago,
     elements.append(Paragraph(f"Subtotal: ${total_precio:,.2f}", styles["Normal"]))
     if descuento > 0:
         elements.append(Spacer(1, 10))
-    descuento = total_precio - total_final
+    descuento =  total_final * 0.05
     elements.append(Paragraph(f"Descuento: -${descuento:,.2f}", styles["Normal"]))
     elements.append(Spacer(1, 10))
     elements.append(Paragraph(f"Total: ${total_final:,.2f}", styles["Normal"]))
