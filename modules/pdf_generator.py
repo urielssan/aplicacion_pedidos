@@ -55,7 +55,8 @@ def generar_pdf(pedido_id, cliente, fecha_entrega, horario_entrega, metodo_pago,
     elements.append(Paragraph(f"Subtotal: ${total_precio:,.2f}", styles["Normal"]))
     if descuento > 0:
         elements.append(Spacer(1, 10))
-    descuento =  total_final * 0.05
+        descuento =  total_final * 0.05
+    else:descuento =  total_final * 0
     elements.append(Paragraph(f"Descuento: -${descuento:,.2f}", styles["Normal"]))
     elements.append(Spacer(1, 10))
     elements.append(Paragraph(f"Total: ${total_final:,.2f}", styles["Normal"]))

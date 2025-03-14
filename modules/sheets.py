@@ -25,7 +25,7 @@ def conectar_sheets():
 # Columnas ordenadas en la hoja "Pedidos"
 COLUMNS_PEDIDOS = ["ID", "Vendedor", "Cliente", "Dirección", "Teléfono", "Fecha de Entrega",
                    "Horario de Entrega", "Método de Pago", "Monto", "Pagado", "Observaciones", 
-                   "Estado", "Productos", "Cantidades"]
+                   "Estado", "Productos", "Cantidades", "Estado"]
 
 COLUMNS_PRODUCTOS = ["ID Venta", "Fecha de Entrega", "Monto", "Vendedor", "Método de Pago", "Cliente", "Producto", "Cantidad"]
 
@@ -53,7 +53,7 @@ def guardar_en_sheets(datos, productos, cantidades):
 
     # Crear fila de datos ordenada
     fila = [
-        datos["ID"], datos["Vendedor"], datos["Cliente"], datos["Dirección"], datos["Teléfono"], datos["Fecha de Entrega"], datos["Horario de Entrega"], datos["Método de Pago"], datos["Monto"], datos["Pagado"], productos_str, cantidades_str
+        datos["ID"], datos["Vendedor"], datos["Cliente"], datos["Dirección"], datos["Teléfono"], datos["Fecha de Entrega"], datos["Horario de Entrega"], datos["Método de Pago"], datos["Monto"], datos["Pagado"], productos_str, cantidades_str, datos["Estado"]
     ]
 
     # 🔹 Agregar la fila en la hoja "Pedidos"
