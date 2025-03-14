@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0 auto;
   text-align: center;
@@ -128,19 +129,19 @@ body {
 .navbar {
   background-color: #444343;
   padding: 10px 0;
-  text-align: center; }
+  text-align: start; }
   .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0; }
     .navbar ul li {
       display: inline;
-      margin-right: 20px; }
+      margin-right: 10px; }
       .navbar ul li a {
         color: #fcfcfc;
         text-decoration: none;
-        font-size: 18px;
-        font-weight: bold;
+        font-size: 14px;
+        font-weight: 600;
         padding: 10px 15px;
         transition: background 0.3s; }
         .navbar ul li a:hover {
@@ -186,8 +187,103 @@ body {
       margin-bottom: 0.5rem;
       padding: 0.5rem; }
 
+/* 🔹 Ajustar tabla de pedidos para que ocupe mejor el espacio */
 .pedidos_table {
-  display: flex;
-  justify-content: center;
-  color: #fcfcfc;
-  padding: 1rem; }
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+  background-color: #fcfcfc;
+  color: #030303;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px #444343; }
+
+/* 🔹 Ajustar encabezado de la tabla */
+.pedidos_table th {
+  background-color: #b9b0b0;
+  color: #000000;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #fcfcfc; }
+
+/* 🔹 Ajustar filas de la tabla */
+.pedidos_table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ccc; }
+
+/* 🔹 Hacer que la tabla sea responsiva */
+@media (max-width: 768px) {
+  .pedidos_table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; } }
+
+/* 🔹 Mejorar los botones de edición */
+.pedidos_table button {
+  background-color: #881d1d;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px; }
+
+.pedidos_table button:hover {
+  background-color: #6b1515; }
+
+/* 🔹 Estilos mejorados para el modal */
+#editarModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background: #6b1515;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 80vh; }
+
+/* 🔹 Mejorar los inputs del modal */
+#editarModal input,
+#editarModal select {
+  display: block;
+  /* Hace que los inputs ocupen todo el ancho disponible */
+  width: 80%;
+  margin: 10px auto;
+  /* Centra los inputs horizontalmente */
+  padding: 10px;
+  border: 1px solid #881d1d;
+  border-radius: 5px;
+  box-sizing: border-box;
+  /* Incluye padding y border en el ancho total */ }
+
+/* 🔹 Estilo para el botón de cerrar */
+#editarModal button {
+  display: block;
+  /* Hace que el botón ocupe todo el ancho disponible */
+  width: 80%;
+  margin: 15px auto;
+  /* Centra el botón horizontalmente */
+  padding: 10px;
+  background-color: #881d1d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; }
+
+#editarModal button:hover {
+  background-color: #6b1515; }
+
+/* 🔹 Ajustar modal en pantallas pequeñas */
+@media (max-width: 480px) {
+  #editarModal {
+    width: 95%;
+    max-width: none; } }

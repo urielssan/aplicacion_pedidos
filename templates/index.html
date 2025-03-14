@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="icon" href="../static/images/ico-dorado.ico" type="image/x-icon">
 <!-- Agregar jQuery y Select2 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -14,6 +15,8 @@
 
 <script>
 const preciosProductos = {
+    "3 empanadas + bebida": 7300,
+    "3 empanadas + cerveza": 8100,
     "Agua Sabor Naranja 1500cc": 3000,
     "Agua Sabor Naranja 500cc": 1600,
     "Agua Sin Gas 1500cc": 2500,
@@ -47,7 +50,7 @@ const preciosProductos = {
     "Empanadas JyQ (12u)": 22800,
     "Empanadas Mozzarella Cebolla (12u)": 22800,
     "Empanadas Pollo (12u)": 22800,
-    "Filet Pechuga (3u)": 9500,
+    "Filet Pechuga": 9500,
     "Hamburguesa Novillo (1u)": 7200,
     "Hamburguesas Cordero (4u)": 7500,
     "Hamburguesas Novillo (4u)": 7500,
@@ -64,7 +67,7 @@ const preciosProductos = {
     "Milanesas Finita Peceto (1kg)": 12000,
     "Novillo Desmechado (400g)": 8000,
     "Papas Fritas": 1500,
-    "Pata Muslo (2u)": 4500,
+    "Pata Muslo": 4500,
     "Picada Premium (1u)": 23000,
     "Picada Quesos (1u)": 20000,
     "Pollo Desmechado (400g)": 6000,
@@ -91,9 +94,12 @@ const preciosProductos = {
     "Vino Blanco Chardonnay (750ml)": 8000,
     "Vino Malbec (750ml)": 8000,
     "Vino Rosado (750ml)": 8000,
+    "hamburguesa o milanesa + papas": 8200,
+    "hamburguesa o milanesa + papas + bebida": 9800,
+    "hamburguesa o milanesa + papas + cerveza": 10800,
+    "hamburguesa o milanesa sola": 7200,
 };
-    
-  function actualizarSubtotal() {
+    function actualizarSubtotal() {
         let total = 0;
         let productos = document.querySelectorAll(".producto-item");
 
@@ -149,16 +155,15 @@ const preciosProductos = {
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="{{ url_for('ver_pedidos') }}">📜 Ver Lista de Pedidos</a></li>
-            <li><a href="{{ url_for('logout') }}">🚪 Cerrar Sesión</a></li>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('ver_pedidos') }}">Tabla de pedidos</a></li>
+            <li><a href="{{ url_for('editar_pedidos') }}">Editar Pedidos</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
-    <div class="header">
-        <h1>Familia Garcia Vidal</h1>
-        <h3>Aplicación de Registro de Pedidos</h3>
-    </div>
-    
+
+
     <form class="form" action="/enviar_pedido" method="post">
         <h2>Ingresar Pedido</h2>
         <div class="productos">
@@ -201,6 +206,8 @@ const preciosProductos = {
             <input type="number" name="monto" id="monto" required readonly>
             <p>¿Pagado?</p>
             <select name="pagado"><option value="Sí">Sí</option><option value="No">No</option></select>
+            <p>¿Ya fue entregado?</p>
+            <select name="estado"><option value="Pendiente">Pendiente</option><option value="Enviado">Enviado</option><option value="Entregado">Entregado</option></select>
         </div>
         <div class="submit">
             <h2>Productos</h2>

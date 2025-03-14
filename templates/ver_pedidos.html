@@ -3,15 +3,19 @@
 <head>
     <title>Lista de Pedidos</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="../static/images/ico-dorado.ico" type="image/x-icon">
 </head>
 <body>
     <!-- 🔹 Navbar -->
     <nav class="navbar">
         <ul>
-            <li><a href="{{ url_for('index') }}">🏠 Inicio</a></li>
-            <li><a href="{{ url_for('logout') }}">🚪 Cerrar Sesión</a></li>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('ver_pedidos') }}">Tabla de pedidos</a></li>
+            <li><a href="{{ url_for('editar_pedidos') }}">Editar Pedidos</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
         </ul>
     </nav>
+
 
     <h2>Lista de Pedidos</h2>
     <table class="pedidos_table" border="1">
@@ -34,7 +38,7 @@
             <td>{{ pedido["Dirección"] }}</td>
             <td>{{ pedido["Teléfono"] }}</td>
             <td>{{ pedido["Fecha de Entrega"] }}</td>
-            <td>${{ pedido["Monto"] }}</td>
+            <td>{{ pedido["Monto"] }}</td>
             <td>{{ pedido["Pagado"] }}</td>
             <td>{{ pedido["Estado"] }}</td>
         </tr>

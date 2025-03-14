@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="../static/images/ico-dorado.ico" type="image/x-icon">
+    
+    <script>
+        const preciosProductos = {
+            "3 empanadas + bebida": 7300,
+            "3 empanadas + cerveza": 8100,
+            "Agua Sabor Naranja 1500cc": 3000,
+            "Agua Sabor Naranja 500cc": 1600,
+            "Agua Sin Gas 1500cc": 2500,
+            "Agua Sin Gas 500cc": 1600,
+            "Baguette (1u)": 500,
+            "BBQ Casera (100cc)": 1500,
+            "Champagne Brut (750ml)": 10000,
+            "Cerveza Blond Ale (473ml)": 2400,
+            "Cerveza Porter (473ml)": 2400,
+            "Cerveza Scottish (473ml)": 2400,
+            "Coca Cola (1500cc)": 4000,
+            "Coca Cola (500cc)": 1800,
+            "Coca Cola Zero (500cc)": 1800,
+            "Cordero Desmechado (400g)": 7500,
+            "Criolla Casera (100cc)": 1500,
+            "Empanada Cordero (1u)": 1900,
+            "Empanada Espinaca (1u)": 1900,
+            "Empanada JyQ (1u)": 1900,
+            "Empanada Mozzarella Cebolla (1u)": 1900,
+            "Empanada Pollo (1u)": 1900,
+            "Empanada Ternera (1u)": 1900,
+            "Empanadas Carne (12u)": 22800,
+            "Empanadas Congeladas Carne (6u)": 11400,
+            "Empanadas Congeladas Cordero (6u)": 11400,
+            "Empanadas Congeladas Espinaca (6u)": 11400,
+            "Empanadas Congeladas Jamon y Queso (6u)": 11400,
+            "Empanadas Congeladas Mozzarella y Cebolla (6u)": 11400,
+            "Empanadas Congeladas Pollo (6u)": 11400,
+            "Empanadas Cordero (12u)": 22800,
+            "Empanadas Espinaca (12u)": 22800,
+            "Empanadas JyQ (12u)": 22800,
+            "Empanadas Mozzarella Cebolla (12u)": 22800,
+            "Empanadas Pollo (12u)": 22800,
+            "Filet Pechuga": 9500,
+            "Hamburguesa Novillo (1u)": 7200,
+            "Hamburguesas Cordero (4u)": 7500,
+            "Hamburguesas Novillo (4u)": 7500,
+            "Helado Choco Almendras (250g)": 5800,
+            "Helado Dulce de Leche (250g)": 5800,
+            "Helado Lemon Pie (250g)": 5800,
+            "Helado Mascarpone (250g)": 5800,
+            "Huevos Campo (12u)": 4400,
+            "Huevos Campo (30u)": 8700,
+            "Huevos Campo (6u)": 2300,
+            "Mayo Morrón (100cc)": 1500,
+            "Mignon (1u)": 300,
+            "Milanesas Bife Angosto (1kg)": 12000,
+            "Milanesas Finita Peceto (1kg)": 12000,
+            "Novillo Desmechado (400g)": 8000,
+            "Papas Fritas": 1500,
+            "Pata Muslo": 4500,
+            "Picada Premium (1u)": 23000,
+            "Picada Quesos (1u)": 20000,
+            "Pollo Desmechado (400g)": 6000,
+            "Pollo Entero chico (1u)": 10000,
+            "Pollo Entero grande (1u)": 13000,
+            "Pollo Entero mediano (1u)": 11500,
+            "Queso Ciboulette (100cc)": 1500,
+            "Sándwich Milanesa (1u)": 7200,
+            "Sidra Red Delicious (473cc)": 2400,
+            "Sprite (1500cc)": 4000,
+            "Sprite (500cc)": 1800,
+            "Supremas muslo (1kg)": 8500,
+            "Supremas pechuga (1kg)": 9000,
+            "Tira Asado (1kg)": 8000,
+            "Triple Jamón Crudo (3u)": 3000,
+            "Triple Jamón Crudo (6u)": 6000,
+            "Triple JyQ (3u)": 3000,
+            "Triple JyQ (6u)": 6000,
+            "Triple Peceto (3u)": 3000,
+            "Triple Peceto (6u)": 6000,
+            "Triple Veggie (3u)": 3000,
+            "Triple Veggie (6u)": 6000,
+            "Vegetales Salteados (1u)": 5000,
+            "Vino Blanco Chardonnay (750ml)": 8000,
+            "Vino Malbec (750ml)": 8000,
+            "Vino Rosado (750ml)": 8000,
+            "hamburguesa o milanesa + papas": 8200,
+            "hamburguesa o milanesa + papas + bebida": 9800,
+            "hamburguesa o milanesa + papas + cerveza": 10800,
+            "hamburguesa o milanesa sola": 7200,
+        };
+            function actualizarSubtotal() {
+                let total = 0;
+                let productos = document.querySelectorAll(".producto-item");
+        
+                productos.forEach(div => {
+                    let producto = div.querySelector("select").value;
+                    let cantidad = div.querySelector("input").value;
+                    let precioUnitario = preciosProductos[producto] || 0;
+                    total += (precioUnitario * cantidad);
+                });
+        
+                // Aplicar descuentos según el método de pago
+                let descuentoOn = document.getElementById("descuentoOn").value;
+                let descuento = 0;
+        
+                if (descuentoOn === "Sí") {
+                    descuento = 0.05; // 5% de descuento
+                } 
+        
+                let totalConDescuento = total - (total * descuento);
+        
+                // Actualizar la pantalla
+                document.getElementById("subtotal").innerText = `Subtotal: $${total.toFixed(2)}`;
+                document.getElementById("descuento").innerText = `Descuento: -$${(descuento*total).toFixed(2)}`;
+                document.getElementById("monto").value = totalConDescuento.toFixed(2);
+            }
+        
+            $(document).ready(function() {
+                // Aplicar Select2 a todos los selects de productos cuando se carga la página
+                $('.producto-select').select2();
+            });
+        
+            function agregarProducto() {
+                let container = document.getElementById("productos-container");
+                let div = document.createElement("div");
+                div.classList.add("producto-item");
+                let idProducto = "producto-" + Math.random().toString(36).substr(2, 9); // Genera un ID único
+        
+                div.innerHTML = `
+                    <select name="productos[]" class="producto-select" id="${idProducto}" onchange="actualizarSubtotal()">
+                        <option value="">Seleccionar producto</option>
+                        ${Object.keys(preciosProductos).map(p => `<option value="${p}">${p} - $${preciosProductos[p]}</option>`).join("")}
+                    </select>
+                    Cantidad: <input type="number" name="cantidades[]" min="1" value="1" required oninput="actualizarSubtotal()">
+                    <button type="button" onclick="this.parentNode.remove(); actualizarSubtotal()">X</button>`;
+                container.appendChild(div);
+        
+                // Aplicar Select2 al nuevo producto agregado
+                $(`#${idProducto}`).select2();
+            }
+        function editarPedido(id) {
+            document.getElementById("id").value = id;
+            document.getElementById("estado").value = document.getElementById("estado-" + id).innerText;
+            document.getElementById("monto").value = document.getElementById("monto-" + id).innerText;
+            document.getElementById("pagado").value = document.getElementById("pagado-" + id).innerText;
+            document.getElementById("editarModal").style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById("editarModal").style.display = "none";
+        }
+        
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('ver_pedidos') }}">Tabla de pedidos</a></li>
+            <li><a href="{{ url_for('editar_pedidos') }}">Editar Pedidos</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+   <h2>Editor de Pedidos</h2> 
+
+    <table class="pedidos_table" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Vendedor</th>
+            <th>Método de Pago</th>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Pagado</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ pedido["ID"] }}</td>
+            <td>{{ pedido["Vendedor"] }}</td>
+            <td>{{ pedido["Método de Pago"] }}</td>
+            <td>{{ pedido["Cliente"] }}</td>
+            <td id="monto-{{ pedido['ID'] }}">{{ pedido["Monto"] }}</td>
+            <td id="pagado-{{ pedido['ID'] }}">{{ pedido["Pagado"] }}</td>
+            <td id="estado-{{ pedido['ID'] }}">{{ pedido["Estado"] }}</td>
+            <td><button onclick="editarPedido(`{{ pedido['ID'] }}`)">✏️ Editar</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <!-- Modal para editar pedido -->
+<!-- Modal para editar pedido -->
+<div id="editarModal" display="none;">
+<div style="display: flex; justify-content: end; align-items: center;">    
+    <span style="font-size: 20px;background-color: #FFF; padding:2px 5px; cursor:pointer;" onclick="cerrarModal()">×</span>
+</div> 
+<h2 style="text-align: center;">Editar Pedido</h2>
+    <form action="{{ url_for('actualizar_pedido') }}" method="POST">
+        <input type="hidden" name="id" id="id">
+
+        <!-- Editar productos -->
+        <h3>Productos</h3>
+        <div id="productos-container">
+            <!-- Aquí se llenarán los productos con JavaScript -->
+        </div>
+        <button type="button" onclick="agregarProducto()">➕ Agregar Producto</button>
+
+        <br>
+
+        <!-- Método de pago -->
+        <label for="metodo_pago">Método de Pago:</label>
+        <select name="metodo_pago" id="metodo_pago">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Transferencia">Transferencia</option>
+            <option value="Débito">Débito</option>
+            <option value="Crédito">Crédito</option>
+            <option value="Mercado-Pago">Mercado Pago</option>
+            <option value="Payway">Payway</option>
+            <option value="QR">QR</option>
+        </select>
+        <br>
+
+        <!-- Descuento -->
+        <label for="descuentoOn">¿Con Descuento?</label>
+        <select name="descuentoOn" id="descuentoOn" onchange="actualizarSubtotal()">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>
+
+        
+        <br>
+
+        <label for="horario_entrega">Horario de Entrega:</label>
+        <select name="horario_entrega" id="horario_entrega">
+            <option value="10:00 a 13:00">10:00 a 13:00</option>
+            <option value="13:00 a 16:00">13:00 a 16:00</option>
+            <option value="16:00 a 19:00">16:00 a 19:00</option>
+        </select>
+
+        <br>
+
+        <!-- Monto, Pagado y Estado -->
+        <h3 id="subtotal">Subtotal: $0.00</h3>
+        <h3 id="descuento">Descuento: $0.00</h3>
+        <p>Monto:</p>
+        <input type="number" name="monto" id="monto" required readonly>
+
+
+        <br>
+
+        <label for="pagado">¿Pagado?</label>
+        <select name="pagado" id="pagado">
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>
+
+        <br>
+
+        <label for="estado">Estado:</label>
+        <select name="estado" id="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Entregado">Entregado</option>
+        </select>
+
+        <br>
+
+        <button type="submit">Guardar Cambios</button>
+        <button type="button" onclick="cerrarModal()">Cancelar</button>
+    </form>
+
+</body>
+</html>
